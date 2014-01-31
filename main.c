@@ -53,27 +53,34 @@ int main(int argc, char *argv[])
     int i, j;
     
     printf("Jumlah Kota: "); scanf("%i", &jumlah_kota);
-    printf("\n");
+    printf("\nJarak Antar Kota:\n");
+    printf("----------------------\n");
     for(i = 0;i < jumlah_kota;i++)
     { 
         for(j = 0;j < jumlah_kota;j++)
         {
-            matriks[i][j] = Random(25);
-            printf("Matriks[%i][%i]: %i\n", i + 1, j + 1, matriks[i][j]);
+            if(i != j)
+            {
+                matriks[i][j] = Random(25);
+                printf("  Kota %i -> Kota %i: %i\n", i + 1, j + 1, matriks[i][j]);
+            } else
+                matriks[i][j] = INF;
         }
         printf("\n");
     }
+    printf("----------------------\n\n");
+    
     for(i = 0;i < jumlah_kota;i++)
         rute[i] = i;
 
     jarak_minimum = TSP(jumlah_kota, matriks, rute, 0);
 
-    printf("Jarak Minimum: %i\n", jarak_minimum);
+    printf("Jarak Minimum: %i\n\n", jarak_minimum);
 
-    printf("Rute: ");
+    printf("Rute:\n  ");
     for(i = 0;i < jumlah_kota;i++)
-        printf("%i ", rute[i] + 1);
-    printf("1\n");
+        printf("Kota %i -> ", rute[i] + 1);
+    printf("Kota 1\n");
     
     system("PAUSE");
     return 0;
