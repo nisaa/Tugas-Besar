@@ -1,9 +1,15 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 
 #define MAX 100
 #define INF 999
- 
+
+int Random(int range)
+{
+    return rand() % range + 1;    
+}
+
 int TSP(int n, int matriks[][MAX], int rute[], int awal)
 {
     int temp[MAX], rute_minimum[MAX]; 
@@ -39,18 +45,24 @@ int TSP(int n, int matriks[][MAX], int rute[], int awal)
 
 int main(int argc, char *argv[])
 {
+    srand(time(NULL));
+
     int matriks[MAX][MAX];
     int jumlah_kota, rute[MAX];
     int jarak_minimum;
     int i, j;
     
     printf("Jumlah Kota: "); scanf("%i", &jumlah_kota);
-    
-    printf("Masukan Jarak:\n");
+    printf("\n");
     for(i = 0;i < jumlah_kota;i++)
+    { 
         for(j = 0;j < jumlah_kota;j++)
-            scanf("%i", &matriks[i][j]);
-
+        {
+            matriks[i][j] = Random(25);
+            printf("Matriks[%i][%i]: %i\n", i + 1, j + 1, matriks[i][j]);
+        }
+        printf("\n");
+    }
     for(i = 0;i < jumlah_kota;i++)
         rute[i] = i;
 
